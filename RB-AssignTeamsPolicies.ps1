@@ -135,6 +135,7 @@ $token=Get-AppAuthCredentials
 #EndRegion Auth
 
 foreach ($PolicySetup in $PoliciesToAssign){
+    write-output "Processing GroupMembers of GroupID $($PolicySetup.Target)"
     #Region List GroupMembers
     #Receives all members of the group
     $URIGetGroupMembers=$GraphURL+"/groups/"+$($PolicySetup.Target)+"/members?$"+"select=id"
@@ -162,7 +163,9 @@ foreach ($PolicySetup in $PoliciesToAssign){
     foreach ($user in $AllGroupMembers){
         try{
             Grant-CSTeamsAppPermissionPolicy -Identity $user.id -PolicyName $PolicySetup.Name -ErrorAction Stop
+            write-output "Successfully assigned $($PolicySetup.Name) to user $($user.id)"
         }catch{
+            write-output "Error assigning $($PolicySetup.Name) to user $($user.id) ´n $($error[0]))"
             $failedPolicyAssignment+=$user
         }
     }
@@ -170,3 +173,4 @@ foreach ($PolicySetup in $PoliciesToAssign){
     disconnect-MicrosoftTeams
 
 }
+write-output "FailedCount $($failedPolicyAssignment.count)"
