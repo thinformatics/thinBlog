@@ -162,16 +162,16 @@ foreach ($PolicySetup in $PoliciesToAssign){
     
     connect-TeamsSession 
     $Count=0
-    $BatchOperations=$@()
+    $BatchOperations=@()
         
     while($AllGroupMembers.count -gt $count){
         try{
             #build an assignmentjob for X users. X is defined by the var $UsersCountInBatchAssignment
-            $BatchOperations+=new-csBAtchPolicyAssignmentOperation -PolicyType TeamsAppPermissionPolicy -PolicyName $PolicySetup.Name -Identity $($AllGroupMembers[$count..($count+$increment)].id) -OperationName "Batch assignment $($PolicySetup.Name)" -ErrorAction Stop
-            write-output "Successfully started assignment of Policy $($PolicySetup.Name) to user $count to $($count+$increment)"
-            $count=$count+$increment
+            $BatchOperations+=new-csBAtchPolicyAssignmentOperation -PolicyType TeamsAppPermissionPolicy -PolicyName $PolicySetup.Name -Identity $($AllGroupMembers[$count..($count+$UsersCountInBatchAssignment)].id) -OperationName "Batch assignment $($PolicySetup.Name)" -ErrorAction Stop
+            write-output "Successfully started assignment of Policy $($PolicySetup.Name) to user $count to $($count+$UsersCountInBatchAssignment). The Job ID is $($Batchoperations[-1].operationid)"
+            $count=$count+$UsersCountInBatchAssignment
         }catch{
-            write-output "Error creating batch assignment of Policy $($PolicySetup.Name) to user $count to $($count+$increment)"
+            write-output "Error creating batch assignment of Policy $($PolicySetup.Name) to user $count to $($count+$UsersCountInBatchAssignment)"
         } 
     }
 
@@ -179,4 +179,3 @@ foreach ($PolicySetup in $PoliciesToAssign){
     disconnect-MicrosoftTeams
 
 }
-write-output "FailedCount $($failedPolicyAssignment.count)"
