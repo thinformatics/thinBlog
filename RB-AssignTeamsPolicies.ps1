@@ -48,6 +48,9 @@ $hash =  @{
 $PoliciesToAssign+= New-Object PSObject -Property $hash
 #just add or remove hashes if you need to assign more ore less policies&/groups
 
+#How many users to handle in one assignment batch job
+$UsersCountInBatchAssignment=4900 #https://docs.microsoft.com/en-us/powershell/module/teams/new-csbatchpolicyassignmentoperation?view=teams-ps#description
+
 #conntect to Azure Key Vault by using the AA Managed Identity to receive secrets
 connect-AZAccount -Identity
 
@@ -154,21 +157,24 @@ foreach ($PolicySetup in $PoliciesToAssign){
             $AllGroupMembers += $AdditionalResults.value     
     }
     #EndRegion List GroupMembers
-    
-    #Automated Connect to the Teams/Skype API configured in the functions
-    connect-TeamsSession 
-    
     #Region Policy Assignment
-    $failedPolicyAssignment=@()
-    foreach ($user in $AllGroupMembers){
+    #Automated Connect to the Teams/Skype API configured in the functions
+    
+    connect-TeamsSession 
+    $Count=0
+    $BatchOperations=$@()
+        
+    while($AllGroupMembers.count -gt $count){
         try{
-            Grant-CSTeamsAppPermissionPolicy -Identity $user.id -PolicyName $PolicySetup.Name -ErrorAction Stop
-            write-output "Successfully assigned $($PolicySetup.Name) to user $($user.id)"
+            #build an assignmentjob for X users. X is defined by the var $UsersCountInBatchAssignment
+            $BatchOperations+=new-csBAtchPolicyAssignmentOperation -PolicyType TeamsAppPermissionPolicy -PolicyName $PolicySetup.Name -Identity $($AllGroupMembers[$count..($count+$increment)].id) -OperationName "Batch assignment $($PolicySetup.Name)" -ErrorAction Stop
+            write-output "Successfully started assignment of Policy $($PolicySetup.Name) to user $count to $($count+$increment)"
+            $count=$count+$increment
         }catch{
-            write-output "Error assigning $($PolicySetup.Name) to user $($user.id) ´n $($error[0]))"
-            $failedPolicyAssignment+=$user
-        }
+            write-output "Error creating batch assignment of Policy $($PolicySetup.Name) to user $count to $($count+$increment)"
+        } 
     }
+
     #EndRegion Policy Assignment
     disconnect-MicrosoftTeams
 
