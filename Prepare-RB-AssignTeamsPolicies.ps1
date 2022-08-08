@@ -2,8 +2,8 @@ $AZResourceGroupName='JSF_Automation'
 $AAName="TeamsOperationTasks"
 $AALocation='germanywestcentral'
 $AZKeyVaultName='OperationSecrets'
-$AZSubscriptionID='c221eb8c-453d-480b-a809-d1ad3d853e2a'
-$AZTenantID='763aefea-a45b-49f4-a4a4-30d135e944f5'
+$AZSubscriptionID='c221eb8c-453d-480b-a809-XXXXXXXX'
+$AZTenantID='763aefea-a45b-49f4-a4a4-XXXXXXXXX'
 
 connect-azaccount -SubscriptionId $AZSubscriptionID -Tenant $AZTenantID
 #create Automation Account with a System assigned managed identity
@@ -18,9 +18,9 @@ $KeyVault=New-AzKeyVault -Name $AZKeyVaultName -ResourceGroupName $AZResourceGro
 
 #Create Secrets 
 $secret1=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-TenantID" -VaultName $KeyVault.VaultName -SecretValue (ConvertTo-SecureString $AZTenantID -AsPlainText -Force)
-$secret2=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-AppID" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "*SANIZIZED*" -AsPlainText -Force) #we've creted this before with postman, check the screenshots
-$secret3=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-AppSecret" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "*SANIZIZED*"  -AsPlainText -Force)#we've creted this before with postman, check the screenshots
-$secret4=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPoliciest-UserUPN" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "*SANIZIZED*@jsflab.com" -AsPlainText -Force)
+$secret2=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-AppID" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "53c0012b-ec30-41b4-878a-dddbd6f95587" -AsPlainText -Force) #we've creted this before with postman, check output of the post request
+$secret3=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-AppSecret" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "*SANIZIZED*"  -AsPlainText -Force)#we've creted this before with postman, check output ot the post request
+$secret4=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-UserUPN" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "*SANIZIZED*" -AsPlainText -Force)
 $secret5=Set-AzKeyVaultSecret -Name "RB-AssignTeamsPolicies-UserPW" -Vault $KeyVault.VaultName -SecretValue (ConvertTo-SecureString "*SANIZIZED*" -AsPlainText -Force)
 
 #Allow AA to read secrets by assigning Permissions to the managed identity of the account
