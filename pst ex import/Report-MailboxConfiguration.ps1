@@ -88,14 +88,12 @@ function Report-MailboxDetails{
 Connect-exchangeOnline
 
 try {
-    #TBD modulisieren Vergleich IMport MBX mit aktuellen Mailboxen
     $namedmailboxes=@()
     $allmailboxes=Get-Mailbox -resultsize unlimited
     $CSV=Import-Csv -Path $csvpath
     foreach($entry in $csv){
         try{
             $namedmailboxes+= $allmailboxes | Where-Object {$_.EmailAddresses -like ("SMTP:"+[string]$entry.EMailAddress)} -ErrorAction Stop
-            #now i have valid mailboxes
         }catch {
             Write-Host -ForegroundColor Red -Object "ERROR: Can't find a valid mailbox for CSV Entry $([string]$entry.EMailAddress)"
             Write-Host -ForegroundColor Red -Object $error[0]
@@ -112,7 +110,7 @@ foreach($entry in $namedmailboxes){
         Write-Host -ForegroundColor Gray -Object "INFO: Starting to create Report Files for user $([string]$entry.primarysmtpaddress)"
         $ExportPath=New-Item -Path $reportbasepath -ItemType Directory -Name $entry.primarysmtpaddress -Force
         Report-MailboxDetails -MailboxIdentity $entry.Identity -ErrorAction Stop -reportpath ($ExportPath.fullname+"\")
-        Write-Host -ForegroundColor Gray -Object "INFO: The XML Report Files were succesfully generated for user $([string]$entry.primarysmtpaddress)" #insert path here?
+        Write-Host -ForegroundColor Gray -Object "INFO: The XML Report Files were succesfully generated for user $([string]$entry.primarysmtpaddress)"
     }
     catch {
         #insert error handling here
