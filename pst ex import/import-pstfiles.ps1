@@ -2,7 +2,7 @@
 # Run this in a regular powershell, it will connect to EXO (ExchangeOnlineManagement)
 
 $containerURL="https://scalablepstimport.blob.core.windows.net/pstimport"
-$sastoken="?sp=racw&st=2022-11-25T09:23:1"
+$sastoken="?sp=racw&st=2022-11-25T09:23..."
 
 $CohortName="C1"
 $PSTImportMappingTableReport="C:\git\thinBlog\pst ex import\PSTImportMappingTableReport.csv"
@@ -16,10 +16,11 @@ $IncludeFolders= "/*"
 
 $EXOSession = Connect-ExchangeOnline #
 $ErrorOccured=@()
+$i = 1
 foreach ($entry in $PSTImportMappingTable) {
     $UserPSTCount = ($PSTImportMappingTable | where { $_.SourceUserPrincipalName -like $entry.SourceUserPrincipalName}).count
     try {
-        Write-Host -ForegroundColor Gray -Object "INFO: Create Import $i/$($entry.PSTCount) for $($entry.DestinationUserPrincipalName)"
+        Write-Host -ForegroundColor Gray -Object "INFO: Create Import $($entry.PSTCount) for $($entry.DestinationUserPrincipalName)"
 		#The default Syntax of the folder where the regular mailbox content in it after an ediscovery export is "primarysmtp@address.com (Primary)\Top of Information Store". This might be changed in other export scenrios
         New-MailboxImportRequest -Name ($CohortName + "_" + $entry.DestinationUserPrincipalName + "_Import_" + $i + "/" + $entry.PSTCount) -Mailbox $entry.DestinationUserPrincipalName -SourceRootFolder ($entry.SourceUserPrincipalName+ " (Primary)/Top of Information Store") -TargetRootFolder $DestinationFolder -IncludeFolders $IncludeFolders -BadItemLimit $BadItemLimit -LargeItemLimit $LargeItemLimit -AzureBlobStorageAccountUri ($containerURL + "/" + $entry.DestinationUserPrincipalName + "/" + $entry.PSTName ) -AzureSharedAccessSignatureToken $sastoken -AcceptLargeDataLoss -ErrorAction Stop -WarningAction SilentlyContinue #-ConflictResolutionOption forcecopy 
     }
@@ -29,9 +30,16 @@ foreach ($entry in $PSTImportMappingTable) {
 		$ErrorOccured+=$entry
 		
 	} 
+	
+	if ($i -lt $UserPSTCount) {
+        $i++
+    }
+    else {
+        $i = 1
+    }
 }
 
-disconnect-exchangeonline
+disconnect-exchangeonline -confirm:$false
 
 <#
 Get-MailboxImportRequest |where {$_.Status -eq "failed"} |Get-MailboxImportRequestStatistics |fl name,targetalias,message
