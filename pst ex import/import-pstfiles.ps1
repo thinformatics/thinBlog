@@ -2,7 +2,7 @@
 # Run this in a regular powershell, it will connect to EXO (ExchangeOnlineManagement)
 
 $containerURL="https://scalablepstimport.blob.core.windows.net/pstimport"
-$sastoken="?sp=racw&st=2022-11-25T0..."
+$sastoken="?sp=racw&st=2022-11-25T09:23:1"
 
 $CohortName="C1"
 $PSTImportMappingTableReport="C:\git\thinBlog\pst ex import\PSTImportMappingTableReport.csv"
@@ -16,7 +16,7 @@ $IncludeFolders= "/*"
 
 $EXOSession = Connect-ExchangeOnline #
 $ErrorOccured=@()
-foreach ($entry in $PSTImportMappingTable[0]) {
+foreach ($entry in $PSTImportMappingTable) {
     $UserPSTCount = ($PSTImportMappingTable | where { $_.SourceUserPrincipalName -like $entry.SourceUserPrincipalName}).count
     try {
         Write-Host -ForegroundColor Gray -Object "INFO: Create Import $i/$($entry.PSTCount) for $($entry.DestinationUserPrincipalName)"
