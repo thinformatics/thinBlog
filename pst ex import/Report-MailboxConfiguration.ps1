@@ -1,5 +1,5 @@
-$csvpath=".\pst ex import\mbxusers.csv"
-$reportbasepath=".\pst ex import\Export\"
+$csvpath="c:\git\thinblog\pst ex import\mbxusers.csv"
+$reportbasepath="c:\git\thinblog\pst ex import\Export\"
 
 #Region Functions
 function Report-MailboxDetails{
@@ -17,6 +17,7 @@ function Report-MailboxDetails{
     $ExportMbxFolderStatisticsFilePath=($reportpath+"MBXFolderStatistics_"+[string]$mbx.primarysmtpaddress+".xml")
     $ExportMbxFolderPermissionsFilePath=($reportpath+"MBXFolderPermissions_"+[string]$mbx.primarysmtpaddress+".xml")
     $ExportMbxRegionalConfigurationFilePath=($reportpath+"MBXRegionalConfiguration_"+[string]$mbx.primarysmtpaddress+".xml")
+    $ExportMbxRecipientPermissionsFilePath=($reportpath+"MBXRecipientPermissions_"+[string]$mbx.primarysmtpaddress+".xml")
 
     # Export Mailbox Permissions
     $permissions = Get-MailboxPermission ([string]$mbx.DistinguishedName) | Where-Object {[string]$_.AccessRights -eq "FullAccess" -and !$_.IsInherited}
@@ -78,6 +79,16 @@ function Report-MailboxDetails{
     catch {
         $XMlExportError++
         Write-Host -ForegroundColor Red -Object "There was an issue exporting the mailbox regional configuration for mailbox $Mailboxidentity, please investigate."
+    }
+
+    #Mailbox Recipient Permissions
+    $mailboxRecipientPermissions = RecipientPermission -Identity ([string]$mbx.DistinguishedName)
+    try {
+        $mailboxRecipientPermissions | Export-Clixml $ExportMbxRecipientPermissionsFilePath -ErrorAction Stop    
+    }
+    catch {
+        $XMlExportError++
+        Write-Host -ForegroundColor Red -Object "There was an issue exporting the mailbox recipient permissions for mailbox $Mailboxidentity, please investigate."
     }
     
 }
