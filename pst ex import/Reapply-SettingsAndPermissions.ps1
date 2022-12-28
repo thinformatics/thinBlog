@@ -6,7 +6,7 @@ $reportbasepath="C:\git\thinBlog\pst ex import\Export\"
 $TransscriptPath="C:\git\thinBlog\pst ex import\ReapplyTranscripts\"
 
 #Region Functions
-function reapply-mailboxregionalsettings{
+function reapply-mailboxRegionalSettings{
     param(
         $MailboxIdentity,
         $reportIdentifier
@@ -47,13 +47,8 @@ function reapply-mailboxregionalsettings{
         Write-Host -ForegroundColor Red -Object "ERROR: error occured while applying mailbox regional settings for $([string]$mbx.primarysmtpaddress)"
         $Global:InModuleErrorOccured=$true
     }
-    try{
-        #get-mailbox ([string]$mbx.userprincipalname) | set-mailboxregionalconfiguration  -ErrorAction Stop | out-null
-    }catch{
-        Write-Host -ForegroundColor Yellow -Object "Warning: error occured while applying mailbox regional dateformat for $([string]$mbx.primarysmtpaddress). $([string]$MbxRegionalConfigurationReport.dateformat) is not valid for language $([string]$MbxRegionalConfigurationReport.Language)"
-    }
 }
-function reapply-fullaccessPermissions{
+function reapply-fullAccessPermissions{
     param(
         $MailboxIdentity,
         $reportIdentifier
@@ -157,7 +152,7 @@ function reapply-MailboxMessageCopyConfiguration{
             set-mailbox ([string]$mbx.Identity) -MessageCopyForSentAsEnabled $true -ErrorAction Stop -WarningAction SilentlyContinue | out-null
         }
         catch {
-            Write-Host -ForegroundColor Red -Object "ERROR: Can�t reapply MessageCopyForSentAsEnabled to $([string]$assignedentry.samaccountname)"  
+            Write-Host -ForegroundColor Red -Object "ERROR: Can't reapply MessageCopyForSentAsEnabled to $([string]$assignedentry.samaccountname)"  
             $Global:InModuleErrorOccured=$true
         }     
     }else {
@@ -170,7 +165,7 @@ function reapply-MailboxMessageCopyConfiguration{
             set-mailbox ([string]$mbx.Identity) -MessageCopyForSendOnBehalfEnabled $true -ErrorAction Stop -WarningAction SilentlyContinue | out-null
         }
         catch {
-            Write-Host -ForegroundColor Red -Object "ERROR: Can�t reapply MessageCopyForSendOnBehalfEnabled to $([string]$assignedentry.samaccountname)"  
+            Write-Host -ForegroundColor Red -Object "ERROR: Can't reapply MessageCopyForSendOnBehalfEnabled to $([string]$assignedentry.samaccountname)"  
             $Global:InModuleErrorOccured=$true
         }     
     }else {
@@ -225,9 +220,8 @@ function reapply-sendaspermissions{
 $MappingTable=import-csv -Path $PSTImportMappingTableReport -Delimiter ';'
 
 #Connect to the destination environment
-connect-exchangeonline
+connect-exchangeonline -showBanner:$false
 
-#make module out of this validation
 $namedexomailboxes=@()
 $allexomailboxes=Get-Mailbox -resultsize unlimited
 $CSV=Import-Csv -Path $PSTImportMappingTableReport -Delimiter ';'
@@ -266,7 +260,6 @@ foreach($entry in $csv){
             Write-Host -ForegroundColor Red -Object $error[0]
             
         }
-
         #Forwarding
         try {
             write-host -ForegroundColor Gray -Object "INFO: START Task (3/5) for User $($entry.DestinationUserPrincipalName) - ReApply Forwarding Settings"
@@ -278,7 +271,6 @@ foreach($entry in $csv){
             Write-Host -ForegroundColor Red -Object "ERROR: Error re-applying forwarding settings"
             Write-Host -ForegroundColor Red -Object $error[0]   
         }
-
         #Message Copy (SendAs & SendOnBehalf) Settings
         try {
             write-host -ForegroundColor Gray -Object "INFO: START Task (4/5) for User $($entry.DestinationUserPrincipalName) - ReApply MessageCopy Settings"
@@ -290,7 +282,6 @@ foreach($entry in $csv){
             Write-Host -ForegroundColor Red -Object "ERROR: Error re-applying MessageCopy Settings"
             Write-Host -ForegroundColor Red -Object $error[0]
         }
-
         #Send As Permissions
         try {
             write-host -ForegroundColor Gray -Object "INFO: START Task (5/5) for User $($entry.DestinationUserPrincipalName) - ReApply Send As Permissions"

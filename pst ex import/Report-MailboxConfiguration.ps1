@@ -11,7 +11,7 @@ function Report-MailboxDetails{
     $mbx=get-mailbox -Identity $MailboxIdentity
     $XMlExportError=0
     
-    $ExportMbxPermissionFilePath=($reportpath+"MailboxPermission_"+[string]$mbx.primarysmtpaddress+".xml")
+    $ExportMbxPermissionFilePath=($reportpath+"MBXPermission_"+[string]$mbx.primarysmtpaddress+".xml")
     $ExportMbxSettingsFilePath=($reportpath+"MBXSettings_"+[string]$mbx.primarysmtpaddress+".xml")
     $ExportMbxCalendarProcessingFilePath=($reportpath+"MBXCalendarProcessing_"+[string]$mbx.primarysmtpaddress+".xml")
     $ExportMbxFolderStatisticsFilePath=($reportpath+"MBXFolderStatistics_"+[string]$mbx.primarysmtpaddress+".xml")
