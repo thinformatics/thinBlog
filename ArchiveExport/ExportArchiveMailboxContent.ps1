@@ -1,5 +1,4 @@
 #Requires -Modules ExchangeOnlineManagement
-#https://practical365.com/targeted-collection-content-search/
 
 $ComplianceCenterConnection=Connect-IPPSSession
 $ExchangeOnlineConnection=Connect-ExchangeOnline
@@ -7,11 +6,10 @@ $ExchangeOnlineConnection=Connect-ExchangeOnline
 $csvPath="C:\git\thinBlog\ArchiveExport\MailboxList.csv"
 $eDiscoveryCaseName="Search Archive Mailbox Content $(get-date -format "yyyyMMdd_HHmm")"
 $eDiscoveryCaseDescription="Searches for all non-system Mailbox Folders within archive mailboxes"
-$OneSearchForAll=$false
+$OneSearchForAll=$true
 
 $MailboxList=Import-Csv -Path $csvPath -Delimiter ';'
 
-$eDiscoverySearchCollection=@{}
 $MailboxSearchString=""
 
 function get-ArchiveMailboxFolderIDs {
@@ -22,7 +20,7 @@ function get-ArchiveMailboxFolderIDs {
     
     $FolderIDCollection=@()
     $searchString=""
-    $SystemFolderNames="ExternalContacts","Files", "Recoverable Items", "Audits", "Calendar Logging", "Deletions", "DiscoveryHolds", "SearchDiscoveryHoldsFolder", "SearchDiscoveryHoldsUnindexedItemFolder", "Top of Information Store", "Purges", "SubstrateHolds", "Versions"
+    $SystemFolderNames="ExternalContacts","Files", "Recoverable Items", "Audits", "Calendar Logging", "DiscoveryHolds", "SearchDiscoveryHoldsFolder", "SearchDiscoveryHoldsUnindexedItemFolder", "Top of Information Store", "Purges", "SubstrateHolds", "Versions"
     #Check mailbox for activated archive
     $Mailbox=get-exoMailbox $mailboxupn -properties ArchiveStatus
     if($mailbox.archivestatus -eq 'Active'){
@@ -37,7 +35,8 @@ function get-ArchiveMailboxFolderIDs {
         $FoldersToSearchFor=$FoldersToSearchFor
     }
 
-    #The following method of converting the Exchange Folder ID to an ID that is usable in the compliance search was copied from #https://practical365.com/targeted-collection-content-search/
+    #The following method of converting the Exchange Folder ID to an ID that is usable in the compliance search was copied 
+    #from #https://practical365.com/targeted-collection-content-search/
     foreach ($Folder in $FoldersToSearchFor){
         $folderid=$Folder.FolderID
         $Encoding = [System.Text.Encoding]::GetEncoding("us-ascii")
