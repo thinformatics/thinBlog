@@ -1,0 +1,365 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20221111173756
+Username: THINFORMATICS\jakob.schaefer
+RunAs User: THINFORMATICS\jakob.schaefer
+Configuration Name: 
+Machine: JAKOBS (Microsoft Windows NT 10.0.22000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command Import-Module 'c:\Users\jakob.schaefer\.vscode\extensions\ms-vscode.powershell-2022.10.0\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2022.10.0' -AdditionalModules @('PowerShellEditorServices.VSCode') -BundledModulesPath 'c:\Users\jakob.schaefer\.vscode\extensions\ms-vscode.powershell-2022.10.0\modules' -EnableConsoleRepl -StartupBanner "PowerShell Extension v2022.10.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+" -LogLevel 'Normal' -LogPath 'c:\Users\jakob.schaefer\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\logs\1668079701-a0d92430-f450-4fc4-a32b-11a1918ed23a1668079697102\EditorServices.log' -SessionDetailsPath 'c:\Users\jakob.schaefer\AppData\Roaming\Code\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-1592-404497.json' -FeatureFlags @() 
+Process ID: 9196
+PSVersion: 5.1.22000.832
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22000.832
+BuildVersion: 10.0.22000.832
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\git\thinBlog\pst ex import\Export\\ReApplyTranscript_.txt
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> 0
+0
+PS C:\git\thinBlog> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20221111173853
+**********************

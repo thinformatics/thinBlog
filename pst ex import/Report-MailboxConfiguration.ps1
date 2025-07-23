@@ -96,7 +96,7 @@ function Report-MailboxDetails{
 #EndRegion Functions
 
 #connect to source
-Connect-exchangeOnline
+#Connect-exchangeOnline
 
 try {
     $namedmailboxes=@()
@@ -130,4 +130,4 @@ foreach($entry in $namedmailboxes){
 
 Write-Host -ForegroundColor Gray -Object "INFO: End - Create Mailbox Permission and Setting Reports"  
 
-Disconnect-ExchangeOnline
+#Disconnect-ExchangeOnline

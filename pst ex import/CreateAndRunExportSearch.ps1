@@ -1,7 +1,7 @@
-$CaseName="MBXBulkExport"
+$CaseName="MBXBulkExport_01"
 $CaseDescription="This is Cohort X which we export today"
 $ExportDG="MBXToMigrate@nkq6.onmicrosoft.com" #Exchange DistributionGroup which contains all users for which we want to export pst's
-$SearchName="Members of $ExportDG"
+$SearchName="Members_2 of $ExportDG"
 #$PSTExportFolder="C:\git\thinBlog\pst ex import\Export\ExportedPSTs"
 #$azcopypath="c:\temp\"
 
@@ -26,7 +26,7 @@ do {
 ) 
 
 #Preparing the PST Export
-$ComplianceSearchAction=New-ComplianceSearchAction -SearchName $SearchName -Export -ExchangeArchiveFormat PerUserPst -IncludeCredential -FOrmat FxStream -scenario General
+$ComplianceSearchAction=New-ComplianceSearchAction -SearchName $search.Name -Export -ExchangeArchiveFormat PerUserPst -IncludeCredential -FOrmat FxStream -scenario General
 
 #doing the next step to contain the initial results which contain the sas key which we could use for downloading the exports via azcopy
 $StoreInitialResults=$ComplianceSearchAction
@@ -45,7 +45,7 @@ do {
 <# Unfortunately from here on it's useless. I've tried to download to extract the Ediscovery Search Results via AZCopy to PST Files 
 to get the max out of the automation, but i was't successfull. So you have to go to the compliance center manually and download the results manually :(.
 If you know how to deal with .fs .meta files to create a pst file go on and use the following to download the results. 
-
+#>
 $ResultsThatContainCreds=$StoreInitialResults.results.Split(';')
 $SplitString=": "
 $containerURL=([string]$ResultsThatContainCreds[0] -split $SplitString)[1]

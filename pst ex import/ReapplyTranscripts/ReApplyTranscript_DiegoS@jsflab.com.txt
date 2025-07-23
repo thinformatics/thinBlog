@@ -1,0 +1,35 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20221227161950
+Username: THINFORMATICS\jakob.schaefer
+RunAs User: THINFORMATICS\jakob.schaefer
+Configuration Name: 
+Machine: JAKOBS (Microsoft Windows NT 10.0.22000.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 27796
+PSVersion: 5.1.22000.1335
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22000.1335
+BuildVersion: 10.0.22000.1335
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\git\thinBlog\pst ex import\ReapplyTranscripts\ReApplyTranscript_DiegoS@jsflab.com.txt
+INFO: START PostProcessing for User DiegoS@jsflab.com
+INFO: START Task (1/5) for User DiegoS@jsflab.com - ReApply FullAccess Permissions
+INFO: END Task (1/5) for User DiegoS@jsflab.com - ReApply FullAccess Permissions
+INFO: START Task (2/5) for User DiegoS@jsflab.com - ReApply Mailbox Regional Settings
+INFO: END Task (2/5) for User DiegoS@jsflab.com - ReApply Mailbox Regional Settings
+INFO: START Task (3/5) for User DiegoS@jsflab.com - ReApply Forwarding Settings
+INFO: Mailbox Forwarding was not enabled for the mailbox.
+INFO: END Task (3/5) for User DiegoS@jsflab.com - ReApply Forwarding Settings
+INFO: START Task (4/5) for User DiegoS@jsflab.com - ReApply MessageCopy Settings
+INFO: END Task (4/5) for User DiegoS@jsflab.com - ReApply MessageCopy Settings
+INFO: START Task (5/5) for User DiegoS@jsflab.com - ReApply Send As Permissions
+INFO: END Task (5/5) for User DiegoS@jsflab.com - ReApply Send As Permissions
+**********************
+Windows PowerShell transcript end
+End time: 20221227161958
+**********************

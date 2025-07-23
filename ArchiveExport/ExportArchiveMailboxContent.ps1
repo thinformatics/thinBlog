@@ -63,7 +63,6 @@ function get-ArchiveMailboxFolderIDs {
     $result
 }
 
-
 $ComplianceCase=New-ComplianceCase -Name $eDiscoveryCaseName -CaseType eDiscovery -Description $eDiscoveryCaseDescription
 
 if($OneSearchForAll){
@@ -95,8 +94,6 @@ if($OneSearchForAll){
         }
         catch {
             Write-host -ForegroundColor RED -object "[ERROR] Could not create a search for $($mailbox.UPN): $($errors[0])" 
-    
         }
-        
     }
 }

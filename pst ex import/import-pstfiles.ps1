@@ -2,7 +2,7 @@
 # Run this in a regular powershell, it will connect to EXO (ExchangeOnlineManagement)
 
 $containerURL="https://scalablepstimport.blob.core.windows.net/pstimport"
-$sastoken="?sp=racw&st=2022-11-25T09:23..."
+$sastoken="?sp=racw&st=2022-11-25T09:23:18Z&se=2022-12-25T17:23:18Z&spr=https&sv=2021-06-08&sr=c&sig=ZbyZOYts9UaLX8Qg1TAOwJMMRdgP6g1NGeDOrDrv1Pw%3D"
 
 $CohortName="C1"
 $PSTImportMappingTableReport="C:\git\thinBlog\pst ex import\PSTImportMappingTableReport.csv"

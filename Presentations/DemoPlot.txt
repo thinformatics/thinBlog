@@ -1,0 +1,75 @@
+Preparation:
+Dev Tenant: m365x60907295.sharepoint.com
+AppReg AR-APDeployment for DemoI, creds stored in local SecretStore, Admin User with SPO Admin + Site Permissions to be able to select roles
+
+Create SPO Sites:
+    I've used the SPO+AP DEployment Script developed for PAT. I've detelted the APs etc afterwards to be able to show the DEployment via regular PSObject
+    Created entries in https://m365x60907295.sharepoint.com/sites/Datenraum01/Lists/Inventar (DemoSite01, DemoSite02, DemoSite03)
+
+    Started LA 
+    https://portal.azure.com/#@jsflab.com/resource/subscriptions/c221eb8c-453d-480b-a809-d1ad3d853e2a/resourceGroups/JSF_Automation/providers/Microsoft.Logic/workflows/PAT-LA-NewDataRoomDeployment/logicApp
+
+    Removed APC'
+
+    inerted SIteAliases, SiteID's, RoleID's M365GroupsID's into APsToCreate.csv
+
+Start Demo I : Create AP's for already deployed SPO Sites
+
+Show Site:
+    https://m365x60907295.sharepoint.com/sites/DemoSite01/Shared%20Documents/Forms/AllItems.aspx
+Show Permissions (Custom Navigation, Custom Roles) on Site:
+    Custom Nav https://m365x60907295.sharepoint.com/sites/DemoSite01
+    Custom Permissions / Roles: https://m365x60907295.sharepoint.com/sites/DemoSite01/_layouts/15/user.aspx
+
+Go to VSC
+Explain used method:
+Lines 71+
+Auth via delegated app, cause the addition of spo ressources only supports delegated auth
+short explanation of usage of secret management
+Lines 91+
+
+Run Script until foreach in 207
+entry=CSVData[0] to explain everything step by stept
+show line 241 +- to explain the need of delegated auth
+show result=Catalog in aka.ms/elmpreview -> hint to this preview view
+
+than explain ap creation: 249++
+line 260: isHidden because we do not want to use this catalog / avoid problems of sensible sharing for external parties
+line 317+: Policy Creation
+line 325 scope
+
+run script 207 ++
+
+show result in aka.ms/elmpreview
+Catalog incl assignmentmanager and ressources
+one of the 4 ap's with and their poliices
+
+Finish Demo I
+
+Start Demo II: assign uusers to ap's
+Explaing UserMappingReport and rights-columns in correlation with lines 190++ where the related ap is defined
+explain that the report of Demo I was used to feed this script
+explain that only internal members have beend assigned cause it wasn possible at that time to assign non existant externals
+explain $newTokenNeeded lines 140++
+explaing min & max assignment time (lines 265++)
+Finish Demo II
+
+
+Start Demo III: update policies 
+Adjust Displayfilter to show it on an explicit policy Set
+Show NextResults  lines 91++
+Show durationInDays line 148 as part of the policy
+Show results in aka.ms/elmpreview
+show still expiring assignments
+Finish Demo III
+
+Start Demo IV: reassign users
+explain email notification issue
+Adjust DIsplayfilter to target on a specific ap
+show lines 228ff where i change the start & endtime
+show results in the reuqsts section of an affected ap to show the old and the new assignment
+If errors/warning occures: $accessPackageAssignments=$FailedReAssignments and then restart foreach loop in 178ff
+
+
+
+
